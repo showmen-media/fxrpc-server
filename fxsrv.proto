@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package rpcservice;
+
+message BsonPayload {
+  bytes data = 1; // BSON data
+}
+
+service RpcService {
+  rpc EventsStream (stream BsonPayload) returns (stream BsonPayload);
+  rpc ObjControlStream (stream BsonPayload) returns (stream BsonPayload);
+}
