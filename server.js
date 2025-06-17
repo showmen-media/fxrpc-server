@@ -86,9 +86,14 @@ class ObjControlStream extends RpcStream {
 				if (result instanceof Promise) {
 					result = await result;
 				}
+
+				if (result === undefined) {
+					return null;
+				}
+
 				if (!(result instanceof Object)) {
-					resultObjects = { 0: result };
-					return 0;
+					resultObjects = { '0': result };
+					return '0';
 				}
 
 				resultObjects = {};
