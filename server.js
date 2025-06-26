@@ -102,7 +102,9 @@ class ObjControlStream extends RpcStream {
 					Object.entries(original).forEach(([key, value]) => {
 						copy[key] = (
 							value instanceof Object
-							? recursiveSerialize(value, true)
+							? ({
+								"__##object": recursiveSerialize(value)
+							})
 							: value
 						);
 					});
